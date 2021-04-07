@@ -1,0 +1,129 @@
+#header {
+    z-index: 997;
+    top: 20px;
+}
+
+#header.header-scrolled {
+    background: rgb(222,121,234);
+    background: linear-gradient(90deg, rgba(222,121,234,1) 0%, rgba(222,121,234,1) 18%, rgba(255,255,255,1) 40%);
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+    top: 0;
+}
+
+#header .logo {
+    overflow: hidden;
+    padding: 10px 30px 10px 30px;
+    background-image: linear-gradient(to right, #de79ea, white);
+}
+
+#header .logo h1 a, #header .logo h1 a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#header .logo h1 {
+    font-size: 26px;
+    padding: 0;
+    line-height: 1;
+    font-weight: 700;
+}
+
+.nav-menu, .nav-menu * {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-menu > ul > li {
+    position: relative;
+    white-space: nowrap;
+    float: left;
+}
+
+i.icofont-navigation-menu {
+    position: absolute;
+    display: none;
+    line-height: 38px;
+    color: #de79ea;
+    font-size: 30px;
+    font-weight: 600;
+    top: 15px;
+    right: 45px;
+    cursor: pointer;
+}
+
+.nav-menu a:hover, a.active {
+    background: #f1a3eb;
+    color: #fff !important;
+    border-radius: 50px;
+    margin: 0 15px;
+    padding: 10px 25px;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.nav-menu a {
+    display: block;
+    position: relative;
+    color: #36343a;
+    padding: 10px 15px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.3s;
+    text-transform: uppercase;
+    font-family: "Open Sans";
+}
+
+.nav-menu ,d-none ,d-lg-block {
+    margin-right: 20px;
+}
+
+#header .header-container {
+    background: #fff;
+    /* -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75); */
+}
+
+/** SECTION **/
+@media (min-width: 1024px) {
+    #home {
+        background-attachment: fixed;
+    }
+}
+
+@media (max-width: 992px) {
+    i.icofont-navigation-menu {
+        display: block;
+    }
+    .nav-menu > ul > li {
+        float: none;
+    }
+    .nav-menu a:hover, a.active {
+        background: #f1a3eb;
+        color: #fff !important;
+        border-radius: 0px;
+        padding: 10px 25px;
+        margin: 0px;
+        transition: 0.3s;
+        text-decoration: none;
+    }
+}
+
+.nav-menu.d-none.d-lg-block.display {
+    display: block !important;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 60px;
+    background-color: white;
+}
+
+/*
+#home {
+    width: 100%;
+    height: 100vh;
+    background: url("../assets/img/home.png") center center;
+    background-size: cover;
+    position: relative;
+} */
