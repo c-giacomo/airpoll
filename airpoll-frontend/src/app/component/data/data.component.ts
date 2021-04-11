@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AirpollData } from 'src/app/model/airpollData';
-import { AirpollService } from 'src/app/services/airpoll-service.service';
+import { AirpollService } from 'src/app/services/airpoll.service';
 
 @Component({
   selector: 'app-data',

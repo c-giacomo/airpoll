@@ -1,6 +1,38 @@
-<p>Measurements</p>
-<ul> 
-    <li *ngFor="let data of airpoll">
-      <span>{{data.location}} </span> {{data.city}}
-    </li>
-</ul>
+<div *ngIf="!airpoll || airpoll.length === 0">
+  <span>No data to display</span>
+</div>
+<div *ngIf="airpoll != undefined && airpoll.length > 0">
+  <table>
+    <thead>
+      <tr>
+        <th>Location</th>
+        <th>City</th>
+        <th>Country</th>
+        <th>pm25 - µg/m³</th>
+        <th>no2 - ppm</th>
+        <th>co - ppm</th>
+        <th>pm10 - µg/m³</th>
+        <th>o3 - ppm</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of airpoll">
+        <td>{{item.location}}</td>
+        <td>{{item.city}}</td>
+        <td>{{item.country}}</td>
+        <td>{{item.pm25}}</td>
+        <td>{{item.no2}}</td>
+        <td>{{item.co}}</td>
+        <td>{{item.pm10}}</td>
+        <td>{{item.o3}}</td>
+        <td>{{item.latitude}}</td>
+        <td>{{item.longitude}}</td>
+        <td>{{item.local}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

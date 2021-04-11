@@ -7,7 +7,7 @@ import { WhoamiComponent } from './component/whoami/whoami.component';
 import { DataComponent } from './component/data/data.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CookieInterceptor } from 'src/interceptors/interceptors';
-import { AirpollService } from './services/airpoll-service.service';
+import { AirpollService } from './services/airpoll.service';
 
 @NgModule({
   declarations: [
