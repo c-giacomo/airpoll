@@ -1,3 +1,44 @@
 :host {
+    width: 100%;
     margin-top: 60px;
+}
+
+.filter {
+    height: 25px;
+    width: 100%;
+    background-color: white;
+}
+
+.empty-message {
+    margin: 0 auto;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+table thead {
+    font-size: 12px;
+    background-color: white;  /* FOR FIXED THEAD */
+}
+
+table tbody {
+    font-size: 11px;
+}
+
+/* BEST SOLUTION FOR FIXED THEAD */
+table.table.table-striped {
+    display: table;
+    table-layout: fixed;
+    margin-top: 40px;
+}
+
+table.table.table-striped thead {
+    position: fixed;
+    display: table;
+    table-layout: fixed;
+    left: 0;
+    right: 0;
+    top: 60px;
+    width: 100%;
 }

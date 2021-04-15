@@ -1,18 +1,18 @@
-<div *ngIf="!airpoll || airpoll.length === 0">
+<div class="empty-message" *ngIf="!airpoll || airpoll.length === 0">
   <span>No data to display</span>
 </div>
-<div *ngIf="airpoll != undefined && airpoll.length > 0">
-  <table>
+<div class="table-responsive" *ngIf="airpoll != undefined && airpoll.length > 0">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th>Location</th>
         <th>City</th>
         <th>Country</th>
-        <th>pm25 - µg/m³</th>
-        <th>no2 - ppm</th>
-        <th>co - ppm</th>
-        <th>pm10 - µg/m³</th>
-        <th>o3 - ppm</th>
+        <th>pm25 µg/m³</th>
+        <th>no2 ppm</th>
+        <th>co ppm</th>
+        <th>pm10 µg/m³</th>
+        <th>o3 ppm</th>
         <th>Latitude</th>
         <th>Longitude</th>
         <th>Data</th>
@@ -23,16 +23,20 @@
         <td>{{item.location}}</td>
         <td>{{item.city}}</td>
         <td>{{item.country}}</td>
-        <td>{{item.pm25}}</td>
-        <td>{{item.no2}}</td>
-        <td>{{item.co}}</td>
-        <td>{{item.pm10}}</td>
-        <td>{{item.o3}}</td>
+        <td *ngIf="item.pm25 == null">N.D.</td>
+        <td *ngIf="item.pm25 != null">{{item.pm25}}</td>
+        <td *ngIf="item.no2 == null">N.D.</td>
+        <td *ngIf="item.no2 != null">{{item.no2}}</td>
+        <td *ngIf="item.co == null">N.D.</td>
+        <td *ngIf="item.co != null">{{item.co}}</td>
+        <td *ngIf="item.pm10 == null">N.D.</td>
+        <td *ngIf="item.pm10 != null">{{item.pm10}}</td>
+        <td *ngIf="item.o3 == null">N.D.</td>
+        <td *ngIf="item.o3 != null">{{item.o3}}</td>
         <td>{{item.latitude}}</td>
         <td>{{item.longitude}}</td>
         <td>{{item.local}}</td>
       </tr>
     </tbody>
   </table>
-
 </div>
