@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.airpoll.common.AirpollCommonResource;
@@ -21,10 +22,14 @@ public class AirpollResource extends AirpollCommonResource<AirpollDto, Integer, 
 	}
 	
 	@GetMapping("/data")
-	public List<AirpollDto> getData() throws Exception {
+	public List<AirpollDto> getData(
+			@RequestParam(value = "countryId", required = false) Integer countryId,
+			@RequestParam(value = "cityId", required = false) Integer cityId,
+			@RequestParam(value = "page", defaultValue = "1") Integer page) throws Exception {
 		log.info("retrieving information to display..");
+		
 		try {
-			return service.getData();
+			return service.getData(countryId, cityId, page);
 		} catch (Exception e) {
 			throw e;
 		}

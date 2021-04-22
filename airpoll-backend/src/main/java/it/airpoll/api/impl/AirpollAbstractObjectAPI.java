@@ -33,6 +33,12 @@ public abstract class AirpollAbstractObjectAPI<V, T> extends AirpollAbstractAPI 
         return result;
     }
 	
+	public Double roundFloor(Double value, int places) {
+		if (value == null) return null;
+		Double scale = Math.pow(10, places);
+	    return Math.floor(value * scale) / scale;
+	}
+	
 	public abstract Multimap<V, T> convert(List<Map<String, Object>> map);
 
 }

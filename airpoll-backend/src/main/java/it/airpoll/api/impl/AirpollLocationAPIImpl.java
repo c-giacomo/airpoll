@@ -66,8 +66,8 @@ public class AirpollLocationAPIImpl extends AirpollAbstractObjectAPI<String, Loc
 			lObj.setLocation((String)item.get("location"));
 			
 			Map<String, Double> coord = (Map<String, Double>) item.get("coordinates");
-			lObj.setLatitude((Double)coord.get("latitude"));
-			lObj.setLongitude((Double)coord.get("longitude"));
+			lObj.setLatitude(roundFloor((Double)coord.get("latitude"), 6));
+			lObj.setLongitude(roundFloor((Double)coord.get("longitude"), 6));
 			
 			result.put(lObj.getCity(), lObj);
 		});

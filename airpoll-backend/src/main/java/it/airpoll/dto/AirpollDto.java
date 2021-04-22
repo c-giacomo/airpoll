@@ -1,6 +1,6 @@
 package it.airpoll.dto;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -32,6 +32,6 @@ public class AirpollDto {
 	private Double latitude;
 	private Double longitude;
 	
-	private Date local;
+	private LocalDate local;
 	
 }

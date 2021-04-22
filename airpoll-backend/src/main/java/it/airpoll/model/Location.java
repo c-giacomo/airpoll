@@ -28,6 +28,7 @@ public class Location {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	private Integer locationId;
 	private String identifier;
 	
 	private Double latitude;

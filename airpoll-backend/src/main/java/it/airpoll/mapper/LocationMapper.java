@@ -17,6 +17,7 @@ import it.airpoll.model.Location;
 public interface LocationMapper {
 	
 	@Mapping(target = "id", ignore = true)
+	@Mapping(target = "locationId", source = "id")
 	@Mapping(target = "identifier", source = "location")
 	@Mapping(target = "city", ignore = true)
 	Location toEntity(LocationObject obj);

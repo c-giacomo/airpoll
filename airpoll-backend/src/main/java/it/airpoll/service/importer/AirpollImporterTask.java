@@ -75,8 +75,6 @@ public class AirpollImporterTask {
 				
 				citiesObj.forEach(city -> {
 					City c = cityMapper.objToModel(city);
-					c.setCountry(country);
-					country.getCities().add(c);
 					Collection<LocationObject> locationObject = locationMap.get(city.getName());
 					
 					if (!locationObject.isEmpty()) {
@@ -84,23 +82,29 @@ public class AirpollImporterTask {
 						
 						locationObject.forEach(location -> {
 							Location loc = locationMapper.toEntity(location);
-							loc.setCity(c);
-							c.getLocation().add(loc);
 							Collection<MeasurementObject> measurementObject = measurementMap.get(location.getLocation());
 							
 							if (!measurementObject.isEmpty()) {
-								loc.setMeasurements(new ArrayList<Measurements>());
 								Measurements measure = measurementMapper.toEntity(measurementObject);
+								loc.setMeasurements(new ArrayList<Measurements>());
+								
+								c.setCountry(country);
+								country.getCities().add(c);
+								
+								loc.setCity(c);
+								c.getLocation().add(loc);
+								
 								measure.setLocation(loc);
 								loc.getMeasurements().add(measure);
 								
 								countries.add(country);
 							}
+							
 						});
 						
 					}
+					
 				});
-				
 			}
 		});
 		

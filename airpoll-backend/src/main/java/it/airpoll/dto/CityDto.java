@@ -10,6 +10,7 @@ import lombok.ToString;
 public class CityDto {
 	
 	private Integer id;
+	private Integer id_country;
 	
 	private String name;
 }

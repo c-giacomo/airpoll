@@ -22,4 +22,8 @@ public interface CityMapper extends AirpollCommonMapper<CityDto, City> {
 	@Mapping(target = "location", ignore = true)
 	City objToModel(CityObject object);
 
+	@Override
+	@Mapping(target = "id_country", source = "country.id")
+	CityDto toDto(City e);
+
 }

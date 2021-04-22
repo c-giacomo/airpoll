@@ -67,7 +67,7 @@ public class AirpollMeasurementsAPIImpl extends AirpollAbstractObjectAPI<String,
 			MeasurementObject mObj = new MeasurementObject();
 			mObj.setLocation((String)item.get("location"));
 			mObj.setParameter((String)item.get("parameter"));
-			mObj.setValue((Double)item.get("value"));
+			mObj.setValue(roundFloor((Double)item.get("value"), 2));
 			
 			Map<String, String> dates = (Map<String, String>) item.get("date"); 
 			mObj.setDate(getDate((String)dates.get("local")));

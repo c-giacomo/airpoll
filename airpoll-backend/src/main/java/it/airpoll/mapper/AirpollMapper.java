@@ -1,5 +1,8 @@
 package it.airpoll.mapper;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,10 +42,16 @@ public interface AirpollMapper extends AirpollCommonMapper<AirpollDto, Country> 
 				dto.setO3(obj.getO3());
 				dto.setLatitude(obj.getLocation().getLatitude());
 				dto.setLongitude(obj.getLocation().getLongitude());
-				dto.setLocal(obj.getLocal());
+				dto.setLocal(convertToLocalDateViaInstant(obj.getLocal()));
 				return dto;
 			}).collect(Collectors.toList());
 		return result;
+	}
+	
+	default LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
+	    return dateToConvert.toInstant()
+	      .atZone(ZoneId.systemDefault())
+	      .toLocalDate();
 	}
 
 }

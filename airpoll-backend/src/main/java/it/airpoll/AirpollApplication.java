@@ -10,7 +10,6 @@ import it.airpoll.service.importer.AirpollImporterTask;
 @SpringBootApplication
 public class AirpollApplication implements CommandLineRunner {
 	
-	@SuppressWarnings("unused")
 	@Autowired private AirpollImporterTask airpollImporterTask;
 
 	public static void main(String[] args) {
@@ -19,7 +18,7 @@ public class AirpollApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-//		airpollImporterTask.execute();
+		airpollImporterTask.execute();
 	}
 
 }
