@@ -85,7 +85,7 @@ public class AirpollImporterTask {
 							Collection<MeasurementObject> measurementObject = measurementMap.get(location.getLocation());
 							
 							if (!measurementObject.isEmpty()) {
-								Measurements measure = measurementMapper.toEntity(measurementObject);
+								List<Measurements> measures = measurementMapper.toEntity(measurementObject);
 								loc.setMeasurements(new ArrayList<Measurements>());
 								
 								c.setCountry(country);
@@ -94,8 +94,8 @@ public class AirpollImporterTask {
 								loc.setCity(c);
 								c.getLocation().add(loc);
 								
-								measure.setLocation(loc);
-								loc.getMeasurements().add(measure);
+								measures.forEach(m -> m.setLocation(loc));
+								loc.getMeasurements().addAll(measures);
 								
 								countries.add(country);
 							}
@@ -113,7 +113,6 @@ public class AirpollImporterTask {
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());
 		}
-		
 	}
 
 }

@@ -30,6 +30,7 @@ public class Measurements {
 	
 	private Double pm25;
 	private Double no2;
+	private Double so2;
 	private Double co;
 	private Double pm10;
 	private Double o3;

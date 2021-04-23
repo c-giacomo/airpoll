@@ -45,7 +45,7 @@ public class AirpollCityAPIImpl extends AirpollAbstractObjectAPI<String, CityObj
 
 	@Override
 	public Multimap<String, CityObject> get() {
-		return null;
+		return super.get(this.buildStandardParams(), this.buildUrl());
 	}
 
 	@Override

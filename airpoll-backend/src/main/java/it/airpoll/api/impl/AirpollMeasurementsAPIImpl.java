@@ -50,7 +50,7 @@ public class AirpollMeasurementsAPIImpl extends AirpollAbstractObjectAPI<String,
 
 	@Override
 	public Multimap<String, MeasurementObject> get() {
-		return null;
+		return super.get(this.buildStandardParams(), this.buildUrl());
 	}
 
 	@Override

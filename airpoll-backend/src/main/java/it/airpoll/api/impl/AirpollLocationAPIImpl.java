@@ -46,7 +46,7 @@ public class AirpollLocationAPIImpl extends AirpollAbstractObjectAPI<String, Loc
 
 	@Override
 	public Multimap<String, LocationObject> get() {
-		return null;
+		return super.get(this.buildStandardParams(), this.buildUrl());
 	}
 
 	@Override
