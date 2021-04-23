@@ -8,6 +8,10 @@ import { DataComponent } from './component/data/data.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CookieInterceptor } from 'src/interceptors/interceptors';
 import { AirpollService } from './services/airpoll.service';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,11 @@ import { AirpollService } from './services/airpoll.service';
   imports: [
     HttpClientModule,
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    FormsModule,
+    AppRoutingModule,
+    InfiniteScrollModule,
+    NgxSpinnerModule
   ],
   providers: [
     {

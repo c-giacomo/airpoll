@@ -1,5 +1,6 @@
 export class City {
-    private id:Number;
+    id: Number;
+    id_country: Number;
 
-    private name:String;
+    name: String;
 }

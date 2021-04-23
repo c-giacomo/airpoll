@@ -1,42 +1,108 @@
-<div class="empty-message" *ngIf="!airpoll || airpoll.length === 0">
+<div class="loader" *ngIf="!airpoll">
+  <ngx-spinner
+    bdOpacity = 0.9
+    bdColor = ""
+    size = "default"
+    color = "#581f87"
+    type = "ball-pulse-sync"
+    [fullScreen] = "false"
+  >
+  </ngx-spinner>
+</div>
+
+<div class="empty-message" *ngIf="airpoll != undefined && airpoll.length === 0">
   <span>No data to display</span>
 </div>
+
 <div class="table-responsive" *ngIf="airpoll != undefined && airpoll.length > 0">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Location</th>
-        <th>City</th>
-        <th>Country</th>
-        <th>pm25 µg/m³</th>
-        <th>no2 ppm</th>
-        <th>co ppm</th>
-        <th>pm10 µg/m³</th>
-        <th>o3 ppm</th>
-        <th>Latitude</th>
-        <th>Longitude</th>
-        <th>Data</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of airpoll">
-        <td>{{item.location}}</td>
-        <td>{{item.city}}</td>
-        <td>{{item.country}}</td>
-        <td *ngIf="item.pm25 == null">N.D.</td>
-        <td *ngIf="item.pm25 != null">{{item.pm25}}</td>
-        <td *ngIf="item.no2 == null">N.D.</td>
-        <td *ngIf="item.no2 != null">{{item.no2}}</td>
-        <td *ngIf="item.co == null">N.D.</td>
-        <td *ngIf="item.co != null">{{item.co}}</td>
-        <td *ngIf="item.pm10 == null">N.D.</td>
-        <td *ngIf="item.pm10 != null">{{item.pm10}}</td>
-        <td *ngIf="item.o3 == null">N.D.</td>
-        <td *ngIf="item.o3 != null">{{item.o3}}</td>
-        <td>{{item.latitude}}</td>
-        <td>{{item.longitude}}</td>
-        <td>{{item.local}}</td>
-      </tr>
-    </tbody>
-  </table>
+  
+  <div class="filter">
+    <div class="country-select">
+      <select
+        class="form-select form-select-sm"
+        name="filteredCountry"
+        [(ngModel)]="filteredCountry"
+        (change)="country_onChange();">
+
+        <option [ngValue]="null">SELECT A COUNTRY</option>
+        <option [ngValue]="_c" *ngFor="let _c of country">{{_c.name}}</option>
+      </select>
+    </div>
+
+    <div class="city-select">
+      <select
+        class="form-select form-select-sm"
+        name="filteredCity"
+        [(ngModel)]="filteredCity"
+        (change)="city_onChange();">
+
+        <option [ngValue]="null">SELECT A CITY</option>
+        <option [ngValue]="_c" *ngFor="let _c of selectedCity">{{_c.name}}</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div class="search-results"
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="200"
+    (scrolled)="onScroll()"> 
+  
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Location</th>
+          <th>City</th>
+          <th>Country</th>
+          <th>pm25 µg/m³</th>
+          <th>no2 ppm</th>
+          <th>co ppm</th>
+          <th>pm10 µg/m³</th>
+          <th>o3 ppm</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+          <th>Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of airpoll">
+          <td>{{item.location}}</td>
+          <td>{{item.city}}</td>
+          <td>{{item.country}}</td>
+          <td *ngIf="item.pm25 == null">N.D.</td>
+          <td *ngIf="item.pm25 != null">{{item.pm25}}</td>
+          <td *ngIf="item.no2 == null">N.D.</td>
+          <td *ngIf="item.no2 != null">{{item.no2}}</td>
+          <td *ngIf="item.co == null">N.D.</td>
+          <td *ngIf="item.co != null">{{item.co}}</td>
+          <td *ngIf="item.pm10 == null">N.D.</td>
+          <td *ngIf="item.pm10 != null">{{item.pm10}}</td>
+          <td *ngIf="item.o3 == null">N.D.</td>
+          <td *ngIf="item.o3 != null">{{item.o3}}</td>
+          <td>{{item.latitude}}</td>
+          <td>{{item.longitude}}</td>
+          <td>{{item.local}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  
+  <!--
+  <div class="row pb-5">
+    <div class="col p-5">
+      <ngx-spinner
+        [name] = "scrolling"
+        bdOpacity = 0.9
+        bdColor = ""
+        size = "default"
+        color = "#581f87"
+        type = "ball-pulse-sync"
+        [fullScreen] = "false"
+      >
+      </ngx-spinner>
+    </div>
+  </div> -->
+  
 </div>
