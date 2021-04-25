@@ -1,6 +1,7 @@
 package it.airpoll.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import it.airpoll.model.City;
@@ -13,6 +14,6 @@ import it.airpoll.model.City;
  */
 
 @Repository
-public interface CityRepository extends JpaRepository<City, Integer> {
+public interface CityRepository extends JpaRepository<City, Integer>, JpaSpecificationExecutor<City>{
 
 }

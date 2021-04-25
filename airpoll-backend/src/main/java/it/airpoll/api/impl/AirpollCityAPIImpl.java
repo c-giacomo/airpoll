@@ -17,7 +17,7 @@ import it.airpoll.api.objects.CityObject;
  * @author Giacomo
  * 
  * Implementation of the airpoll.api to retrieve City as a function of Country. The default limit of OpenAQ is 100 results
- * here the limit has been increased to 1500. Higher is the result limit more city will be found
+ * here the limit has been increased to 50000. Higher is the result limit more city will be found (maximum 100000)
  *
  */
 
@@ -34,7 +34,7 @@ public class AirpollCityAPIImpl extends AirpollAbstractObjectAPI<String, CityObj
 	public Multimap<String, String> buildStandardParams(List<? extends Object> param) {
 		Multimap<String, String> params = ArrayListMultimap.create();
 		param.forEach(item -> params.put("country", (String)item));
-		params.put("limit", "1500");
+		params.put("limit", "50000");
 		return params;
 	}
 

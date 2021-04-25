@@ -15,8 +15,8 @@ import it.airpoll.api.objects.CountryObject;
 /**
  * @author Giacomo
  * 
- * Implementation of the airpoll.api to retrieve Country, the root of this hierarchical model. The default limit of OpenAQ is 100 results
- * here the limit is not been increased because of the total of Countries available on the OpenAQ DB is 129.
+ * Implementation of the airpoll.api to retrieve Country, the root of this hierarchical model. The total amount of Countries 
+ * available on the OpenAQ DB is 129.
  *
  */
 
@@ -26,6 +26,7 @@ public class AirpollCountryAPIImpl extends AirpollAbstractObjectAPI<String, Coun
 	@Override
 	public Multimap<String, String> buildStandardParams() {
 		Multimap<String, String> params = ArrayListMultimap.create();
+		params.put("limit", "130");
 		return params;
 	}
 	

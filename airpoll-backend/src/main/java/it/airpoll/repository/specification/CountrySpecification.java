@@ -11,11 +11,5 @@ public class CountrySpecification {
 			return (root, query, cb) -> cb.conjunction();
 		else return (root, query, cb) -> cb.equal(root.get("id"), countryId);
 	}
-	
-	public static Specification<Country> findByCity(Integer cityId) {
-		if (cityId == null)
-			return (root, query, cb) -> cb.conjunction();
-		else return (root, query, cb) -> cb.equal(root.join("cities").get("id"), cityId);
-	}
 
 }

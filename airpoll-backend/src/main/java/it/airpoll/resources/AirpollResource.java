@@ -29,7 +29,9 @@ public class AirpollResource extends AirpollCommonResource<AirpollDto, Integer, 
 		log.info("retrieving information to display..");
 		
 		try {
-			return service.getData(countryId, cityId, page);
+			if (cityId == null)
+				return service.get(countryId, page);
+			return service.get(countryId, cityId, page);
 		} catch (Exception e) {
 			throw e;
 		}

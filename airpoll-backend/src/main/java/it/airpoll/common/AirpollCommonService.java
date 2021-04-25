@@ -1,6 +1,7 @@
 package it.airpoll.common;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,12 @@ public abstract class AirpollCommonService<E, D, ID, R extends JpaRepository<E, 
 		if (entities.isEmpty()) throw new ItemNotFoundException("Entities not found!");
 		List<D> dtos = entities.stream().map(mapper::toDto).collect(Collectors.toList());
 		return dtos;
+	}
+	
+	protected D findById(ID Id) throws ItemNotFoundException {
+		Optional<E> entity = repository.findById(Id);
+		return entity.map(i -> mapper.toDto(i))
+				.orElseThrow(() -> new ItemNotFoundException("Entity not Found"));
 	}
 
 }

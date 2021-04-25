@@ -75,7 +75,7 @@ public class AirpollImporterTask {
 				
 				citiesObj.forEach(city -> {
 					City c = cityMapper.objToModel(city);
-					Collection<LocationObject> locationObject = locationMap.get(city.getName());
+					Collection<LocationObject> locationObject = locationMap.get(!city.getName().equals("N/A") ? city.getName() : "");
 					
 					if (!locationObject.isEmpty()) {
 						c.setLocation(new ArrayList<Location>());

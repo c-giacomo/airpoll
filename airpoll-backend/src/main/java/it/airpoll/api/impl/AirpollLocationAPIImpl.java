@@ -17,7 +17,7 @@ import it.airpoll.api.objects.LocationObject;
  * @author Giacomo
  * 
  * Implementation of the airpoll.api to retrieve Location as a function of Country. The default limit of OpenAQ is 100 results
- * here the limit has been increased to 10000 (maximum 100000) to achieve more results.
+ * here the limit has been increased to 50000 (maximum 100000) to achieve more results.
  *
  */
 
@@ -35,7 +35,7 @@ public class AirpollLocationAPIImpl extends AirpollAbstractObjectAPI<String, Loc
 	public Multimap<String, String> buildStandardParams(List<? extends Object> param) {
 		Multimap<String, String> params = ArrayListMultimap.create();
 		param.forEach(item -> params.put("country", (String)item));
-		params.put("limit", "10000");
+		params.put("limit", "50000");
 		return params;
 	}
 
