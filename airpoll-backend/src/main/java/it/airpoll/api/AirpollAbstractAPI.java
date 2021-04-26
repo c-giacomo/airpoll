@@ -60,6 +60,9 @@ public abstract class AirpollAbstractAPI {
 			        .build();
 		 
 		Response response = client.newCall(request).execute();
+		if (response.code() != 200) throw new RuntimeException(
+				String.format("Failed to retrieve data from the server for request %s", request.url()));
+		
 		Map<String, Object> responseBody = gson.fromJson(response.body().charStream(), new TypeToken<Map<String, Object>>() {
 	       }.getType());
 		 

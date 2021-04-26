@@ -31,3 +31,17 @@
     border: 2px solid #fff;
     color: #fff;
 }
+
+@media (max-width: 426px) {
+
+    .container h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 769px) {
+
+    .container h1 {
+        font-size: 2.5rem;
+    }
+}

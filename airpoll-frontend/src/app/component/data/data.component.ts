@@ -27,7 +27,7 @@ export class DataComponent implements OnInit {
   filteredCountry: Country = null;
   filteredCity: City = null;
 
-  page: Number = 1;
+  page: number = 4;
   countryCode: Number;
   cityCode: Number;
   
@@ -47,22 +47,35 @@ export class DataComponent implements OnInit {
   }
 
   onScroll() {
-    // this.page++;
-    // this.loadNextData(this.page);
+    console.log('scrolled');
+    this.page++;
+    this.loadNextData();
   }
 
-  loadNextData(page: number) {
-    this.airpollService.list(this.countryCode, this.cityCode, page).subscribe(success => {
+  loadNextData() {
+    this.airpollService.list(this.countryCode, this.cityCode, this.page).subscribe(success => {
       this.airpoll.push(...success);
+    });
+  }
+
+  loadFilteredData() {
+    this.spinner.show();
+    this.airpollService.list(this.countryCode, this.cityCode, this.page).subscribe(success => {
+      this.airpoll = success;
+      this.spinner.show();
     });
   }
 
   country_onChange() {
     this.loadFilteredCity(this.filteredCountry.id);
+    this.cityCode = null;
+    this.countryCode = this.filteredCountry.id;
+    this.loadFilteredData();
   }
 
   city_onChange() {
-    console.log(this.filteredCity);
+    this.cityCode = this.filteredCity.id;
+    this.loadFilteredData();
   }
 
   loadFilteredCity(countryCode: Number) {
