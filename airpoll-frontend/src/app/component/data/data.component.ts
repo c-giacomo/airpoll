@@ -27,7 +27,7 @@ export class DataComponent implements OnInit {
   filteredCountry: Country = null;
   filteredCity: City = null;
 
-  page: number = 4;
+  page: number = 4;         // reasonable value, in time, for first amount of loaded data
   countryCode: Number;
   cityCode: Number;
   
@@ -54,7 +54,7 @@ export class DataComponent implements OnInit {
 
   loadNextData() {
     this.airpollService.list(this.countryCode, this.cityCode, this.page).subscribe(success => {
-      this.airpoll.push(...success);
+      this.airpoll = success;
     });
   }
 
@@ -69,12 +69,14 @@ export class DataComponent implements OnInit {
   country_onChange() {
     this.loadFilteredCity(this.filteredCountry.id);
     this.cityCode = null;
+    this.page = 4;
     this.countryCode = this.filteredCountry.id;
     this.loadFilteredData();
   }
 
   city_onChange() {
     this.cityCode = this.filteredCity.id;
+    this.page = 4;
     this.loadFilteredData();
   }
 
