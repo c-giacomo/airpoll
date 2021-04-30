@@ -1,10 +1,12 @@
 import { NULL_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Paging } from 'src/app/configuration/paging';
 import { AirpollData } from 'src/app/model/airpollData';
 import { City } from 'src/app/model/city';
 import { Country } from 'src/app/model/country';
 import { AirpollService } from 'src/app/services/airpoll.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-data',
@@ -27,13 +29,13 @@ export class DataComponent implements OnInit {
   filteredCountry: Country = null;
   filteredCity: City = null;
 
-  page: number = 4;         // reasonable value, in time, for first amount of loaded data
+  paging: Paging = new Paging();
   countryCode: Number;
   cityCode: Number;
   
   ngOnInit(): void {
     this.spinner.show();
-    this.airpollService.list(this.countryCode, this.cityCode, this.page).subscribe(success => {
+    this.airpollService.list(this.countryCode, this.cityCode, this.paging.page).subscribe(success => {
       this.airpoll = success;
       this.spinner.hide();
     });
@@ -48,35 +50,38 @@ export class DataComponent implements OnInit {
 
   onScroll() {
     console.log('scrolled');
-    this.page++;
+    this.paging.increase();
     this.loadNextData();
   }
 
   loadNextData() {
-    this.airpollService.list(this.countryCode, this.cityCode, this.page).subscribe(success => {
-      this.airpoll = success;
+    this.airpollService.list(this.countryCode, this.cityCode, this.paging.page).subscribe(success => {
+      if (environment.mode === 'projection')
+        this.airpoll.push(...success);
+      else
+        this.airpoll = success;
     });
   }
 
   loadFilteredData() {
     this.spinner.show();
-    this.airpollService.list(this.countryCode, this.cityCode, this.page).subscribe(success => {
+    this.airpollService.list(this.countryCode, this.cityCode, this.paging.page).subscribe(success => {
       this.airpoll = success;
-      this.spinner.show();
+      this.spinner.hide();
     });
   }
 
   country_onChange() {
     this.loadFilteredCity(this.filteredCountry.id);
     this.cityCode = null;
-    this.page = 4;
+    this.paging.reset();
     this.countryCode = this.filteredCountry.id;
     this.loadFilteredData();
   }
 
   city_onChange() {
     this.cityCode = this.filteredCity.id;
-    this.page = 4;
+    this.paging.reset();
     this.loadFilteredData();
   }
 

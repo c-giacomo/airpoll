@@ -2,8 +2,15 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+/**
+ * @author Giacomo
+ * Two initialization mode, if mode is equals to projection different approach will be used on both side (check the backend 
+ * javadoc comments to clarify). On front-end side just paginator and middle data load will change 
+ * */
+
 export const environment = {
   production: false,
+  mode: "projection",
   API_URL: 'http://localhost:8080/api/v1'
 };
 
