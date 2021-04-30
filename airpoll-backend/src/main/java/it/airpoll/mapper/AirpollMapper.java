@@ -16,7 +16,7 @@ import it.airpoll.model.Country;
 /**
  * @author Giacomo
  *
- * MapStruct mapper to generate DTO with main information required by spec
+ * MapStruct mapper to generate DTO with main information required by spec. Will be used only in default mode
  * 
  */
 

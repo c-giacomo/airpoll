@@ -10,24 +10,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 import it.airpoll.common.AirpollCommonResource;
 import it.airpoll.dto.AirpollDto;
-import it.airpoll.service.AirpollService;
+import it.airpoll.service.AirpollProjectionService;
 import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author Giacomo
  * 
- * Airpoll Controller loaded in default mode. It calls two different services to retrieve whole (or filtered) Country entity by Specificaton classes.
- * The Country, wich contains all data in their relationship, should be mapped to build desired AirpollDto used in view side
+ * AirpollProjection Controller. It will be load in a Projection mode to retrieve with a single call 
+ * whole data or filtered data by non null parameters. The call return a List of AirpollDto without any mapping
  *
  */
 
-@Profile("default")
+
+@Profile("projection")
 @Slf4j
 @RestController
 @RequestMapping(value = "/api/v1")
-public class AirpollResource extends AirpollCommonResource<AirpollDto, Integer, AirpollService> {
-
-	public AirpollResource(AirpollService service) {
+public class AirpollProjectionResource extends AirpollCommonResource<AirpollDto, Integer, AirpollProjectionService> {
+	
+	public AirpollProjectionResource(AirpollProjectionService service) {
 		super(service);
 	}
 	
@@ -39,8 +40,6 @@ public class AirpollResource extends AirpollCommonResource<AirpollDto, Integer, 
 		log.info("retrieving information to display..");
 		
 		try {
-			if (cityId == null)
-				return service.get(countryId, page);
 			return service.get(countryId, cityId, page);
 		} catch (Exception e) {
 			throw e;

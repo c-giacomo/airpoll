@@ -8,6 +8,13 @@ import it.airpoll.mapper.CityMapper;
 import it.airpoll.model.City;
 import it.airpoll.repository.CityRepository;
 
+/**
+ * @author Giacomo
+ * 
+ * City service used by common mode to retrieve City entity
+ *
+ */
+
 @Service
 public class CityService extends AirpollCommonService<City, CityDto, Integer, CityRepository, CityMapper> {
 

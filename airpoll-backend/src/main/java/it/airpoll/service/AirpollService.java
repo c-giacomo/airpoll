@@ -3,6 +3,7 @@ package it.airpoll.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
@@ -20,6 +21,15 @@ import it.airpoll.repository.CountryRepository;
 import it.airpoll.repository.specification.CitySpecification;
 import it.airpoll.repository.specification.CountrySpecification;
 
+/**
+ * @author Giacomo
+ * 
+ * Airpoll Service loaded in default mode. It has two overloaded method who retrieve whole data, by country, by city, by both two params. The
+ * Country should be mapped by properly mapper to iterate and flat the data.
+ * 
+ */
+
+@Profile("default")
 @Service
 public class AirpollService extends AirpollCommonService<Country, AirpollDto, Integer, CountryRepository, AirpollMapper> {
 	

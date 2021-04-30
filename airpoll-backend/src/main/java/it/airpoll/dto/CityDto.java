@@ -4,6 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * @author Giacomo
+ * 
+ * CityDto class
+ *
+ */
+
 @Getter
 @Setter
 @ToString

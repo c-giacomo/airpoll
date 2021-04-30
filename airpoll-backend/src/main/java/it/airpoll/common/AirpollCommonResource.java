@@ -11,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author Giacomo
+ * 
+ * Pattern for basic resource implementation
  *
  * @param <D> The DTO
  * @param <ID> The class ID of the Entity

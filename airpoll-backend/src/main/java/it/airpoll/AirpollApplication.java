@@ -7,6 +7,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import it.airpoll.service.importer.AirpollImporterTask;
 
+/**
+ * @author Giacomo
+ * 
+ * Main class with DB importerTask call at each load
+ * 
+ */
+
+
 @SpringBootApplication
 public class AirpollApplication implements CommandLineRunner {
 	

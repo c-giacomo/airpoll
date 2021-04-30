@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 /**
  * @author Giacomo
  * 
- * Pattern for basic resources implementation
+ * Pattern for basic service implementation
  * 
  * @param <E> is the model Entity
  * @param <D> is the DTO
