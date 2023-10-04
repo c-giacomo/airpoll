@@ -37,14 +37,10 @@ public class AirpollResource extends AirpollCommonResource<AirpollDto, Integer, 
 			@RequestParam(value = "cityId", required = false) Integer cityId,
 			@RequestParam(value = "page", defaultValue = "1") Integer page) throws Exception {
 		log.info("retrieving information to display..");
-		
-		try {
 			if (cityId == null)
 				return service.get(countryId, page);
 			return service.get(countryId, cityId, page);
-		} catch (Exception e) {
-			throw e;
-		}
+		
 	}
 
 }

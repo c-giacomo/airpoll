@@ -43,7 +43,7 @@ public interface AirpollMapper extends AirpollCommonMapper<AirpollDto, Country> 
 				dto.setO3(obj.getO3());
 				dto.setLatitude(obj.getLocation().getLatitude());
 				dto.setLongitude(obj.getLocation().getLongitude());
-				dto.setLocal(convertToLocalDateViaInstant(obj.getLocal()));
+				dto.setLocal(obj.getLocal());
 				return dto;
 			}).collect(Collectors.toList());
 		return result;
@@ -67,7 +67,7 @@ public interface AirpollMapper extends AirpollCommonMapper<AirpollDto, Country> 
 				dto.setO3(obj.getO3());
 				dto.setLatitude(obj.getLocation().getLatitude());
 				dto.setLongitude(obj.getLocation().getLongitude());
-				dto.setLocal(convertToLocalDateViaInstant(obj.getLocal()));
+				dto.setLocal(obj.getLocal());
 				return dto;
 			}).collect(Collectors.toList());
 		return result;

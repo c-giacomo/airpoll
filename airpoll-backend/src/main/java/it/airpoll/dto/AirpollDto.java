@@ -34,7 +34,7 @@ public class AirpollDto {
 	private Double latitude;
 	private Double longitude;
 	
-	private LocalDate local;
+	private Date local;
 	
 	public AirpollDto() {}
 	
@@ -50,7 +50,7 @@ public class AirpollDto {
 		this.o3 = o3;
 		this.latitude = latitude;
 		this.longitude = longitude;
-		this.local = convertToLocalDateViaInstant(local);
+		this.local = local;
 	}
 	
 	private LocalDate convertToLocalDateViaInstant(Date dateToConvert) {

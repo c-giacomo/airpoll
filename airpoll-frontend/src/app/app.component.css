@@ -13,7 +13,7 @@
 #header .logo {
     overflow: hidden;
     padding: 10px 30px 10px 30px;
-    background-image: linear-gradient(to right, #de79ea, white);
+    background-image: linear-gradient(to right, #EBAEF2, white);
 }
 
 #header .logo h1 a, #header .logo h1 a:hover {

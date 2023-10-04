@@ -34,7 +34,7 @@ public interface MeasurementMapper {
 		List<MeasurementObject> list = obj.stream().sorted(Comparator.comparing(MeasurementObject::getDate))
 				.collect(Collectors.toCollection(ArrayList::new));
 		
-		List<Measurements> result = new ArrayList<Measurements>();
+		List<Measurements> result = new ArrayList<>();
 		
 		try {
 			obj.forEach(item -> {
@@ -44,17 +44,17 @@ public interface MeasurementMapper {
 				
 				measures.forEach(m -> {
 					switch(m.getParameter()) {
-						case "no2": measure.setNo2(item.getValue());
+						case "no2": measure.setNo2(m.getValue());
 						break;
-						case "pm25": measure.setPm25(item.getValue());
+						case "pm25": measure.setPm25(m.getValue());
 						break;
-						case "co": measure.setCo(item.getValue());
+						case "co": measure.setCo(m.getValue());
 						break;
-						case "so2": measure.setSo2(item.getValue());
+						case "so2": measure.setSo2(m.getValue());
 						break;
-						case "pm10": measure.setPm10(item.getValue());
+						case "pm10": measure.setPm10(m.getValue());
 						break;
-						case "o3": measure.setO3(item.getValue());
+						case "o3": measure.setO3(m.getValue());
 						break;
 						default:
 					}

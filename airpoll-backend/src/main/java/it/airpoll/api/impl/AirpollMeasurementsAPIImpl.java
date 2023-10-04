@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
@@ -55,7 +54,7 @@ public class AirpollMeasurementsAPIImpl extends AirpollAbstractObjectAPI<String,
 
 	@Override
 	public Multimap<String, MeasurementObject> get(Set<String> set) {
-		List<String> param = set.stream().collect(Collectors.toList());
+		List<String> param = set.stream().toList();
 		return super.get(this.buildStandardParams(param), this.buildUrl());
 	}
 
@@ -70,7 +69,7 @@ public class AirpollMeasurementsAPIImpl extends AirpollAbstractObjectAPI<String,
 			mObj.setValue(roundFloor((Double)item.get("value"), 2));
 			
 			Map<String, String> dates = (Map<String, String>) item.get("date"); 
-			mObj.setDate(getDate((String)dates.get("local")));
+			mObj.setDate(getDate(dates.get("local")));
 			mObj.setUnit((String)item.get("unit"));
 			mObj.setCity((String)item.get("city"));
 			mObj.setCountry((String)item.get("country"));

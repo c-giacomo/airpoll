@@ -10,7 +10,7 @@
 
 export const environment = {
   production: false,
-  mode: "projection",
+  mode: "default",
   API_URL: 'http://localhost:8080/api/v1'
 };
 
