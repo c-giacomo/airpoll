@@ -34,7 +34,7 @@ public interface AirpollMapper extends AirpollCommonMapper<AirpollDto, Country> 
 			.map(obj -> {
 				AirpollDto dto = new AirpollDto();
 				dto.setLocation(obj.getLocation().getIdentifier());
-				dto.setCity(obj.getLocation().getCity().getName());
+				dto.setCity(obj.getLocation().getCity().getCity());
 				dto.setCountry(obj.getLocation().getCity().getCountry().getName());
 				dto.setPm25(obj.getPm25());
 				dto.setNo2(obj.getNo2());
@@ -58,7 +58,7 @@ public interface AirpollMapper extends AirpollCommonMapper<AirpollDto, Country> 
 			.map(obj -> {
 				AirpollDto dto = new AirpollDto();
 				dto.setLocation(obj.getLocation().getIdentifier());
-				dto.setCity(obj.getLocation().getCity().getName());
+				dto.setCity(obj.getLocation().getCity().getCity());
 				dto.setCountry(obj.getLocation().getCity().getCountry().getName());
 				dto.setPm25(obj.getPm25());
 				dto.setNo2(obj.getNo2());

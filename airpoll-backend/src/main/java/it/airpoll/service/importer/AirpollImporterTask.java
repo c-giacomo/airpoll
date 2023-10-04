@@ -64,21 +64,21 @@ public class AirpollImporterTask {
 		Multimap<String, LocationObject> locationMap = airpollLocationAPI.get(countryMap.keySet());
 		Multimap<String, MeasurementObject> measurementMap = airpollMeasurementAPI.get(countryMap.keySet());
 		
-		List<Country> countries = new ArrayList<Country>();
+		List<Country> countries = new ArrayList<>();
 		
 		countryMap.forEach((k, v) -> {
 			Collection<CityObject> citiesObj = cityMap.get(k);
 			Country country = countryMapper.toEntity(v);
 			
 			if (!citiesObj.isEmpty()) {
-				country.setCities(new ArrayList<City>());
+				country.setCities(new ArrayList<>());
 				
 				citiesObj.forEach(city -> {
 					City c = cityMapper.objToModel(city);
 					Collection<LocationObject> locationObject = locationMap.get(!city.getName().equals("N/A") ? city.getName() : "");
 					
 					if (!locationObject.isEmpty()) {
-						c.setLocation(new ArrayList<Location>());
+						c.setLocation(new ArrayList<>());
 						
 						locationObject.forEach(location -> {
 							Location loc = locationMapper.toEntity(location);
@@ -86,7 +86,7 @@ public class AirpollImporterTask {
 							
 							if (!measurementObject.isEmpty()) {
 								List<Measurements> measures = measurementMapper.toEntity(measurementObject);
-								loc.setMeasurements(new ArrayList<Measurements>());
+								loc.setMeasurements(new ArrayList<>());
 								
 								c.setCountry(country);
 								country.getCities().add(c);
@@ -113,6 +113,8 @@ public class AirpollImporterTask {
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());
 		}
+		
+	log.info("Import dei dati avvenuto con successo");
 	}
 
 }

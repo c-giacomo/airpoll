@@ -24,7 +24,7 @@ import it.airpoll.model.Country;
 @Repository
 public interface CountryRepository extends JpaRepository<Country, Integer>, JpaSpecificationExecutor<Country> {
 	
-	@Query("select new it.airpoll.dto.AirpollDto(l.identifier, c.name, co.name, m.pm25, m.no2, m.co, m.pm10, m.o3, l.latitude, l.longitude, m.local)"
+	@Query("select new it.airpoll.dto.AirpollDto(l.identifier, c.city, co.name, m.pm25, m.no2, m.co, m.pm10, m.o3, l.latitude, l.longitude, m.local)"
 			+ "	from"
 			+ "	City c, Country co, Location l, Measurements m"
 			+ "	where"

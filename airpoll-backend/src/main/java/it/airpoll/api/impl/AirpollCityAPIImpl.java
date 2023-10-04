@@ -1,9 +1,9 @@
 package it.airpoll.api.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
@@ -23,10 +23,13 @@ import it.airpoll.api.objects.CityObject;
 
 @Component
 public class AirpollCityAPIImpl extends AirpollAbstractObjectAPI<String, CityObject> implements AirpollCityAPI {
+	
+	private List<String> countries = new ArrayList<>();
 
 	@Override
 	public Multimap<String, String> buildStandardParams() {
 		Multimap<String, String> params = ArrayListMultimap.create();
+		params.put("limit", "10000");
 		return params;
 	}
 	
@@ -50,20 +53,24 @@ public class AirpollCityAPIImpl extends AirpollAbstractObjectAPI<String, CityObj
 
 	@Override
 	public Multimap<String, CityObject> get(Set<String> set) {
-		List<String> param = set.stream().collect(Collectors.toList());
-		return super.get(this.buildStandardParams(param), this.buildUrl());
+		countries = set.stream().toList();
+		return super.get(this.buildStandardParams(), this.buildUrl());
 	}
 
 	@Override
 	public Multimap<String, CityObject> convert(List<Map<String, Object>> element) {
 		Multimap<String, CityObject> result = ArrayListMultimap.create();
 		element.forEach(item -> {
-			CityObject cObj = new CityObject();
-			cObj.setName((String)item.get("name"));
-			cObj.setCountry((String)item.get("country"));
-			cObj.setCount(Math.round((Double)item.get("count")));
-			cObj.setLocations((int) Math.round((Double)item.get("locations")));
-			result.put(cObj.getCountry(), cObj);
+			String country = (String)item.get("country");
+			String name = (String)item.get("city");
+			if (countries.contains(country) && name != null && !name.equals(" ")) {
+				CityObject cObj = new CityObject();
+				cObj.setName(name);
+				cObj.setCountry(country);
+				cObj.setCount(Math.round((Double)item.get("count")));
+				cObj.setLocations((int) Math.round((Double)item.get("locations")));
+				result.put(cObj.getCountry(), cObj);
+			}
 		});
 		return result;
 	}

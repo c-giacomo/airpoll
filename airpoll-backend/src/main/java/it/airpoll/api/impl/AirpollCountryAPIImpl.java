@@ -26,7 +26,7 @@ public class AirpollCountryAPIImpl extends AirpollAbstractObjectAPI<String, Coun
 	@Override
 	public Multimap<String, String> buildStandardParams() {
 		Multimap<String, String> params = ArrayListMultimap.create();
-		params.put("limit", "130");
+		params.put("limit", "100");
 		return params;
 	}
 	
@@ -54,13 +54,16 @@ public class AirpollCountryAPIImpl extends AirpollAbstractObjectAPI<String, Coun
 	public Multimap<String, CountryObject> convert(List<Map<String, Object>> element) {
 		Multimap<String, CountryObject> result = ArrayListMultimap.create();
 		element.forEach(item -> {
-			CountryObject cObj = new CountryObject();
-			cObj.setCode((String)item.get("code"));
-			cObj.setName((String)item.get("name"));
-			cObj.setCount(Math.round((Double)item.get("count")));
-			cObj.setCities((int) Math.round((Double)item.get("cities")));
-			cObj.setLocations((int) Math.round((Double)item.get("locations")));
-			result.put(cObj.getCode(), cObj);
+			String code = (String)item.get("code");
+			if (code != null && !code.equals("")) {
+				CountryObject cObj = new CountryObject();
+				cObj.setCode((String)item.get("code"));
+				cObj.setName((String)item.get("name"));
+				cObj.setCount(Math.round((Double)item.get("count")));
+				cObj.setCities((int) Math.round((Double)item.get("cities")));
+				cObj.setLocations((int) Math.round((Double)item.get("locations")));
+				result.put(cObj.getCode(), cObj);
+			}
 		});
 		return result;
 	}

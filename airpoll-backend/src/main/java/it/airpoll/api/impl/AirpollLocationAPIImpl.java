@@ -3,7 +3,6 @@ package it.airpoll.api.impl;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
@@ -35,7 +34,7 @@ public class AirpollLocationAPIImpl extends AirpollAbstractObjectAPI<String, Loc
 	public Multimap<String, String> buildStandardParams(List<? extends Object> param) {
 		Multimap<String, String> params = ArrayListMultimap.create();
 		param.forEach(item -> params.put("country", (String)item));
-		params.put("limit", "50000");
+		params.put("limit", "10000");
 		return params;
 	}
 
@@ -51,7 +50,7 @@ public class AirpollLocationAPIImpl extends AirpollAbstractObjectAPI<String, Loc
 
 	@Override
 	public Multimap<String, LocationObject> get(Set<String> set) {
-		List<String> param = set.stream().collect(Collectors.toList());
+		List<String> param = set.stream().toList();
 		return super.get(this.buildStandardParams(param), this.buildUrl());
 	}
 
@@ -66,8 +65,8 @@ public class AirpollLocationAPIImpl extends AirpollAbstractObjectAPI<String, Loc
 			lObj.setLocation((String)item.get("location"));
 			
 			Map<String, Double> coord = (Map<String, Double>) item.get("coordinates");
-			lObj.setLatitude(roundFloor((Double)coord.get("latitude"), 6));
-			lObj.setLongitude(roundFloor((Double)coord.get("longitude"), 6));
+			lObj.setLatitude(roundFloor(coord.get("latitude"), 6));
+			lObj.setLongitude(roundFloor(coord.get("longitude"), 6));
 			
 			result.put(lObj.getCity(), lObj);
 		});
